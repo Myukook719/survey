@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000e9; -webkit-text-stroke: #0000e9}
+    span.s1 {font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s2 {text-decoration: underline ; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="ja"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;アンケートへ移動します&lt;/title&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p id="message"&gt;アンケートのページに移動しています。しばらくお待ちください。&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 各Formsの「回答用URL」に置き換えてください。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const urls = [</p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>"URL1", // </span><span class="s2">https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=mPlH9hjrv0mF4y3GV_95dSdF3k2h4MhKiBPaBdFRFB1UMllZVE5MQ0ZUTEI1OURQTzUyTU1KOVhZRS4u</span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>"URL2”, // https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=mPlH9hjrv0mF4y3GV_95dSdF3k2h4MhKiBPaBdFRFB1UNFBSS0xVWUhOM0VMTlZUREZYOFM4Vk9JNC4u<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>"URL3", // https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=mPlH9hjrv0mF4y3GV_95dSdF3k2h4MhKiBPaBdFRFB1UQ0c3U0VQVloyWUYwMFQ3SjdBTlY2WEVTUi4u</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"URL4", // https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=mPlH9hjrv0mF4y3GV_95dSdF3k2h4MhKiBPaBdFRFB1UNDJTNVNOUk40RTBVVjdYTEVXWjYzSUkyVS4u</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"URL5", // https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=mPlH9hjrv0mF4y3GV_95dSdF3k2h4MhKiBPaBdFRFB1UQVlKQVpHWElQS1hUR0E0N1pEOVZCVURSVC4u</p>
+<p class="p1"><span class="Apple-converted-space">      </span>"URL6"<span class="Apple-converted-space">  </span>// https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=mPlH9hjrv0mF4y3GV_95dSdF3k2h4MhKiBPaBdFRFB1UQThZOE9ZV0E2MDFHVjA4UzUwODNNMjRYRi4u</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// この調査専用の保存名です。回収中は変更しないでください。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const storageKey = "student_survey_b_assignment_v1";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function redirectToForm() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// URLの置き換え忘れ・形式の誤りを確認します。</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const validUrls = urls.every(function (value) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return new URL(value).protocol === "https:";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!validUrls) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById("message").textContent =</p>
+<p class="p1"><span class="Apple-converted-space">          </span>"フォームのURLが正しく設定されていません。調査実施者にお知らせください。";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let savedValue = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 前回の割り当てを読み込みます。</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>savedValue = localStorage.getItem(storageKey);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 保存機能が使えない場合も、振り分けは実行します。</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let formNumber = Number(savedValue);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 有効な保存番号がなければ、0〜5を同じ確率で選びます。</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (</p>
+<p class="p1"><span class="Apple-converted-space">        </span>savedValue === null ||</p>
+<p class="p1"><span class="Apple-converted-space">        </span>savedValue.trim() === "" ||</p>
+<p class="p1"><span class="Apple-converted-space">        </span>!Number.isInteger(formNumber) ||</p>
+<p class="p1"><span class="Apple-converted-space">        </span>formNumber &lt; 0 ||</p>
+<p class="p1"><span class="Apple-converted-space">        </span>formNumber &gt;= urls.length</p>
+<p class="p1"><span class="Apple-converted-space">      </span>) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>formNumber = Math.floor(Math.random() * urls.length);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>localStorage.setItem(storageKey, String(formNumber));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>// 保存できない場合は、開き直すと再抽選になります。</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 選ばれたフォームへ移動します。</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.location.replace(urls[formNumber]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>redirectToForm();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;noscript&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;アンケートに進むには、ブラウザのJavaScriptを有効にしてください。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/noscript&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
